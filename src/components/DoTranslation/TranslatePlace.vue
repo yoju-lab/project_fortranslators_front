@@ -1,7 +1,10 @@
 <template>
   <div class="col-6">
     <!-- source texts -->
-    <SourceTexts />
+    <SourceTexts
+      :sourceTerms="sourceTerms"
+      :translatingTermsLine="translatingTermsLine"
+    />
   </div>
   <div class="col-6">
     <!-- translate Texts -->
@@ -9,20 +12,21 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { defineProps, toRefs } from "vue";
+
 import SourceTexts from "./SourceTexts.vue";
 import TranslateTexts from "./TranslatingTexts.vue";
-export default {
-  props: {
-    propSourceTerms: {
-      type: Object,
-    },
+const props = defineProps({
+  sourceTerms: {
+    type: Array,
   },
-  components: {
-    SourceTexts,
-    TranslateTexts,
+  translatingTermsLine: {
+    type: Number,
   },
-};
+});
+
+// const { sourceTerms, translatingTermsLine } = toRefs(props);
 </script>
 
 <style></style>
