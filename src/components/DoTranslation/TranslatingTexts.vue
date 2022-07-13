@@ -5,13 +5,13 @@
       rows="20"
       @keypress="writeTranslatingTerm"
       placeholder="Choose a term to translate..."
-      v-model="props.takeTranslatedTerm"
+      v-model="states.takeTranslatedTerm"
     ></textarea>
   </div>
 </template>
 
 <script setup>
-import { defineProps, toRefs } from "vue";
+import { defineProps, reactive, toRefs, watch, computed } from "vue";
 
 const props = defineProps({
   translatingTermsLine: {
@@ -21,6 +21,25 @@ const props = defineProps({
     type: String,
   },
 });
+
+const states = reactive({
+  translatingTermsLine: 0,
+  takeTranslatedTerm: "",
+});
+const { translatingTermsLine, takeTranslatedTerm } = toRefs(props);
+
+const addElementWithTakeTerm = function () {
+  states.takeTranslatedTerm = `<span>${props.takeTranslatedTerm}</span>`;
+};
+
+watch(
+  takeTranslatedTerm,
+  (newValue, oldValue) => {
+    console.log("new : ", newValue, "old : ", oldValue);
+    addElementWithTakeTerm();
+  }
+  // { deep: true }
+);
 </script>
 
 <style></style>
