@@ -5,12 +5,22 @@
       rows="20"
       @keypress="writeTranslatingTerm"
       placeholder="Choose a term to translate..."
+      v-model="props.takeTranslatedTerm"
     ></textarea>
   </div>
 </template>
 
-<script>
-export default {};
+<script setup>
+import { defineProps, toRefs } from "vue";
+
+const props = defineProps({
+  translatingTermsLine: {
+    type: Number,
+  },
+  takeTranslatedTerm: {
+    type: String,
+  },
+});
 </script>
 
 <style></style>

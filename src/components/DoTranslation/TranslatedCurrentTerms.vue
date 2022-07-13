@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="h6" @click="takeTranslatedTerm('google')">
+    <div class="h6" @click="takeTranslatedTerm('byGoogle')">
       google : {{ props.translatedTerms.byGoogle[props.translatingTermsLine] }}
     </div>
   </div>
   <div>
-    <div class="h6" @click="takeTranslatedTerm('papago')">
+    <div class="h6" @click="takeTranslatedTerm('byPapago')">
       papago : {{ props.translatedTerms.byPapago[props.translatingTermsLine] }}
     </div>
   </div>

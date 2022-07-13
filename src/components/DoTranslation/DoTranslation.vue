@@ -6,6 +6,7 @@
       <TranslatedCurrentTerms
         :translatedTerms="translatedTerms"
         :translatingTermsLine="state.translatingTermsLine"
+        @takeTranslatedTerm="takeTranslatedTerm"
       />
     </div>
 
@@ -14,6 +15,7 @@
       <TranslatePlace
         :sourceTerms="translatedTerms.source"
         :translatingTermsLine="state.translatingTermsLine"
+        :takeTranslatedTerm="state.takeTranslatedTerm"
       />
     </div>
 
@@ -48,6 +50,7 @@ const translatedTerms = reactive({
 const state = reactive({
   translatingTermsLine: 0, // line of the textarea to translate
   translatingTerm: [], // term to translating in the textarea
+  takeTranslatedTerm: "", // take Translated Term by any
 });
 
 function getDocToTerms(key) {
@@ -55,6 +58,11 @@ function getDocToTerms(key) {
   // console.log(translatedDoc[key]);
   const result = translatedDoc[key].split(regexToTerms);
   return result;
+}
+
+function takeTranslatedTerm(key) {
+  console.log(`takeTranslatedTerm(key) : ${key}`);
+  state.takeTranslatedTerm = translatedTerms[key][state.translatingTermsLine];
 }
 
 onMounted(() => {
