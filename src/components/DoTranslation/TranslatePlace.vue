@@ -8,7 +8,11 @@
   </div>
   <div class="col-6">
     <!-- translate Texts -->
-    <TranslateTexts :takeTranslatedTerm="props.takeTranslatedTerm" />
+    <TranslateTexts
+      :takeTranslatedTerm="props.takeTranslatedTerm"
+      :translatingTermsLine="props.translatingTermsLine"
+      @changeTranslatingTermsLine="changeTranslatingTermsLine"
+    />
   </div>
 </template>
 
@@ -28,6 +32,11 @@ const props = defineProps({
     type: String,
   },
 });
+
+function changeTranslatingTermsLine(index) {
+  console.log(`changeTranslatingTermsLine(index) : ${index}`);
+  state.translatingTermsLine = index;
+}
 </script>
 
 <style></style>
