@@ -1,9 +1,9 @@
 <template>
   <div>
-    <small @click="takeTranslatedTerm('google')"> google : {{}} </small>
+    <div class="h5" @click="takeTranslatedTerm('google')">google : {{}}</div>
   </div>
   <div>
-    <small @click="takeTranslatedTerm('papago')"> papago : {{}} </small>
+    <div class="h5" @click="takeTranslatedTerm('papago')">papago : {{}}</div>
   </div>
 </template>
 
