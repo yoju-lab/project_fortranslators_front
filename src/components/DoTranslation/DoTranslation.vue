@@ -58,8 +58,7 @@ function getDocToTerms(key) {
   const regexToTerms = ".";
   // console.log(translatedDoc[key]);
   const result = translatedDoc[key].split(regexToTerms);
-  // remove empty index
-  arr[arr.length - 1] == "";
+  // remove index with empty value
   if (result[result.length - 1] == "") {
     result.pop();
   }
