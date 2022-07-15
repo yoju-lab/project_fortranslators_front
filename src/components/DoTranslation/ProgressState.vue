@@ -1,15 +1,17 @@
 <template>
-  <small> current term : {{ currentTermArray }} </small><br />
+  <div>
+    <div class="h6">current terms line : {{ props.translatingTermsLine }}</div>
+  </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      currentTermArray: [], // currentTermArray[0] is currentTerm
-    };
+<script setup>
+import { defineProps } from "vue";
+
+const props = defineProps({
+  translatingTermsLine: {
+    type: Number,
   },
-};
+});
 </script>
 
 <style></style>

@@ -11,6 +11,7 @@
     <TranslateTexts
       :takeTranslatedTerm="props.takeTranslatedTerm"
       :translatingTermsLine="props.translatingTermsLine"
+      :termsLength="props.sourceTerms.length"
       @changeTranslatingTermsLine="changeTranslatingTermsLine"
     />
   </div>
@@ -19,7 +20,7 @@
 <script setup>
 import SourceTexts from "./SourceTexts.vue";
 import TranslateTexts from "./TranslatingTexts.vue";
-import { defineProps, toRefs } from "vue";
+import { defineProps, defineEmits } from "vue";
 
 const props = defineProps({
   sourceTerms: {
@@ -33,9 +34,12 @@ const props = defineProps({
   },
 });
 
+const emits = defineEmits(["changeTranslatingTermsLine"]);
+
 function changeTranslatingTermsLine(index) {
   console.log(`changeTranslatingTermsLine(index) : ${index}`);
-  state.translatingTermsLine = index;
+  // props.translatingTermsLine = index;
+  emits("changeTranslatingTermsLine", index);
 }
 </script>
 

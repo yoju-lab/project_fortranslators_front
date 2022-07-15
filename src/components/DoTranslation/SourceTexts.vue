@@ -1,5 +1,6 @@
 <template>
   <div class="input-group">
+    <div>{{ props.translatingTermsLine }}</div>
     <textarea
       class="form-control"
       readonly

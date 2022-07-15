@@ -3,9 +3,10 @@
   <div class="container">
     <!-- current Terms -->
     <div>
+      <div>{{ states.translatingTermsLine }}</div>
       <TranslatedCurrentTerms
         :translatedTerms="translatedTerms"
-        :translatingTermsLine="state.translatingTermsLine"
+        :translatingTermsLine="states.translatingTermsLine"
         @takeTranslatedTerm="takeTranslatedTerm"
       />
     </div>
@@ -14,14 +15,15 @@
     <div class="row">
       <TranslatePlace
         :sourceTerms="translatedTerms.source"
-        :translatingTermsLine="state.translatingTermsLine"
-        :takeTranslatedTerm="state.takeTranslatedTerm"
+        :translatingTermsLine="states.translatingTermsLine"
+        :takeTranslatedTerm="states.takeTranslatedTerm"
+        @changeTranslatingTermsLine="changeTranslatingTermsLine"
       />
     </div>
 
-    <!-- progress state -->
+    <!-- progress states -->
     <div>
-      <ProgressState />
+      <Progressstates :translatingTermsLine="states.translatingTermsLine" />
     </div>
   </div>
 </template>
@@ -29,7 +31,7 @@
 <script setup>
 import TranslatedCurrentTerms from "./TranslatedCurrentTerms.vue";
 import TranslatePlace from "./TranslatePlace.vue";
-import ProgressState from "./ProgressState.vue";
+import Progressstates from "./ProgressState.vue";
 import { onMounted, reactive } from "vue";
 
 const translatedDoc = reactive({
@@ -47,9 +49,8 @@ const translatedTerms = reactive({
   byMe: [],
 });
 
-const state = reactive({
+const states = reactive({
   translatingTermsLine: 0, // line of the textarea to translate
-  translatingTerm: [], // term to translating in the textarea
   takeTranslatedTerm: "", // take Translated Term by any
 });
 
@@ -57,12 +58,17 @@ function getDocToTerms(key) {
   const regexToTerms = ".";
   // console.log(translatedDoc[key]);
   const result = translatedDoc[key].split(regexToTerms);
+  // remove empty index
+  arr[arr.length - 1] == "";
+  if (result[result.length - 1] == "") {
+    result.pop();
+  }
   return result;
 }
 
 function takeTranslatedTerm(key) {
-  console.log(`takeTranslatedTerm(key) : ${key}`);
-  state.takeTranslatedTerm = translatedTerms[key][state.translatingTermsLine];
+  // console.log(`takeTranslatedTerm(key) : ${key}`);
+  states.takeTranslatedTerm = translatedTerms[key][states.translatingTermsLine];
 }
 
 onMounted(() => {
@@ -72,12 +78,13 @@ onMounted(() => {
   // console.log(
   //   `translatedTerms[byGoogle] : ${translatedTerms.byGoogle}`
   // );
-  console.log(
-    `translatedTerms[byGoogle] length : ${translatedTerms.byGoogle.length}`
-  );
-  state.translatingTermsLine = 0;
-  // setFromIndexArray();
+  // console.log(`translatedTerms[byGoogle] length : ${translatedTerms.byGoogle.length}`);
 });
+
+function changeTranslatingTermsLine(index) {
+  // console.log(`changeTranslatingTermsLine(index) : ${index}`);
+  states.translatingTermsLine = index;
+}
 </script>
 
 <style></style>

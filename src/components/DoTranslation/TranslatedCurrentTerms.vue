@@ -26,8 +26,6 @@ const props = defineProps({
     type: Number,
   },
 });
-
-// const { translatedTerms, translatingTermsLine } = toRefs(props);
 </script>
 
 <style></style>
