@@ -27,7 +27,8 @@ function setTanslatedDoc(translatedAPIDoc) {
   translatedDoc.source = translatedAPIDoc.source;
   translatedDoc.byGoogle = translatedAPIDoc.byGoogle;
   translatedDoc.byPapago = translatedAPIDoc.byPapago;
-  console.log(`setTanslatedDoc() - translatedDoc : ${translatedDoc.byGoogle}`);
+  // console.log(`setTanslatedDoc() - translatedDoc : ${translatedDoc.byGoogle}`);
+  changeComponet("DoTranslation");
 }
 </script>
 
@@ -37,7 +38,7 @@ function setTanslatedDoc(translatedAPIDoc) {
       <div
         class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom"
       >
-        <a href="#" class="d-flex align-items-center text-dark text-decoration-none">
+        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="40"
@@ -58,8 +59,8 @@ function setTanslatedDoc(translatedAPIDoc) {
         </a>
 
         <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-          <button @click="changeComponet('ApiTranslation')">ApiTranslation</button>
-          <button @click="changeComponet('DoTranslation')">DoTranslation</button>
+          <!-- <button @click="changeComponet('ApiTranslation')">ApiTranslation</button>
+          <button @click="changeComponet('DoTranslation')">DoTranslation</button> -->
           <a class="me-3 py-2 text-dark text-decoration-none" href="#">LogIn</a>
           <a class="me-3 py-2 text-dark text-decoration-none" href="#">Sign In</a>
         </nav>

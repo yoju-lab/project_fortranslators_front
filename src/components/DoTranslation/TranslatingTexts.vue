@@ -46,36 +46,37 @@ function generateArrayToStringForTerms(termsArray) {
 }
 
 const addTakeTermOnTerms = function (newValue, oldValue) {
+  if (newValue.translatingTermsLine === oldValue.translatingTermsLine) {
+    // states.translatingTermArray.pop();
+  }
   // const addElement = `<span>${newValue.takeTranslatedTerm}</span>`;
   const addElement = `${newValue.takeTranslatedTerm}`;
-  if (newValue.translatingTermsLine === oldValue.translatingTermsLine) {
-    states.translatingTermArray.pop();
-  }
   states.translatingTermArray.push(addElement);
   console.log(`${typeof states.translatingTerms}, ${states.translatingTerms}`);
 
   states.translatingTerms = generateArrayToStringForTerms(states.translatingTermArray);
 };
 
-let period_index = -2;
+let period_index = -1;
 function writeTranslatingTerms(event) {
   // console.log(`writeTranslatingTerms() : ${event.keyCode}`);
   switch (event.keyCode) {
     case 190: // Period
       // console.log(`writeTranslatingTerms : ${event.key}, ${event.key === "."}`);
-      console.log(
-        `writeTranslatingTerms period : ${props.termsLength}, ${states.translatingTermsLine}`
-      );
+      // console.log(
+      //   `writeTranslatingTerms period : ${props.termsLength}, ${states.translatingTermsLine}`
+      // );
       if (props.termsLength >= states.translatingTermsLine) {
         changeTranslatingTermsLine(++states.translatingTermsLine);
+        period_index = states.translatingTerms.lastIndexOf(".");
       }
       break;
     case 8: // BACKSPACE was pressed
-      // console.log(
-      //   `BACKSPACE - period_index : ${period_index}, ${
-      //     states.translatingTerms.length - 1
-      //   }`
-      // );
+      console.log(
+        `BACKSPACE - period_index : ${period_index}, ${
+          states.translatingTerms.length - 1
+        }`
+      );
       if (
         (states.translatingTermsLine > 0) &
         (period_index == states.translatingTerms.length - 1)
