@@ -7,7 +7,7 @@ const translatedDoc = reactive({
   byGoogle: "",
   byPapago: "",
 });
-// const emits = defineEmits(["FromTranslatedApi"]);
+const emits = defineEmits(["setTanslatedDoc"]);
 
 function sendToTranslateAPI() {
   translatedDoc.byGoogle =
@@ -17,6 +17,7 @@ function sendToTranslateAPI() {
     '이제 -- 우크라이나의 침공 이후 러시아의 경제적 고립이 중국을 베이징에 더 가깝게 만들면서 -- 그것은 팡파르와 함께 변화하고 있습니다. 시 주석은 69번째 생일에 열린 전화통화에서 "두 나라를 연결하는 새로운 채널을 만들 것"이라고 말했다. 시 주석은 "중국 측은 러시아 측과 협력해 실질적이고 장기적인 양자 협력 발전을 추진할 준비가 돼 있다"고 말했다.';
 
   console.log(`sendToTranslateAPI()`);
+  emits("setTanslatedDoc", translatedDoc);
 }
 </script>
 

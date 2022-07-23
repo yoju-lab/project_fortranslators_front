@@ -8,7 +8,7 @@
   </div>
   <div class="col-6">
     <!-- translate Texts -->
-    <TranslateTexts
+    <TranslatingTexts
       :takeTranslatedTerm="props.takeTranslatedTerm"
       :translatingTermsLine="props.translatingTermsLine"
       :termsLength="props.sourceTerms.length"
@@ -19,7 +19,7 @@
 
 <script setup>
 import SourceTexts from "./SourceTexts.vue";
-import TranslateTexts from "./TranslatingTexts.vue";
+import TranslatingTexts from "./TranslatingTexts.vue";
 import { defineProps, defineEmits } from "vue";
 
 const props = defineProps({

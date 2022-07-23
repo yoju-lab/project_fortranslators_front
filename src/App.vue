@@ -11,7 +11,23 @@ const states = reactive({
 
 function changeComponet(component_name) {
   states.currentMenu = component_name == "DoTranslation" ? DoTranslation : ApiTranslation;
+  if (states.currentMenu === DoTranslation) {
+  }
   console.log(`changeComponet : ${states.currentMenu}`);
+}
+
+const translatedDoc = reactive({
+  source: "",
+  byGoogle: "",
+  byPapago: "",
+});
+
+function setTanslatedDoc(translatedAPIDoc) {
+  // console.log(`setTanslatedDoc() : ${translatedAPIDoc.byGoogle}`);
+  translatedDoc.source = translatedAPIDoc.source;
+  translatedDoc.byGoogle = translatedAPIDoc.byGoogle;
+  translatedDoc.byPapago = translatedAPIDoc.byPapago;
+  console.log(`setTanslatedDoc() - translatedDoc : ${translatedDoc.byGoogle}`);
 }
 </script>
 
@@ -50,8 +66,12 @@ function changeComponet(component_name) {
       </div>
     </header>
     <main>
-      {{ translatedDoc }}
-      <component :is="states.currentMenu"></component>
+      <!-- <div>byGoogle : {{ translatedDoc.byGoogle }}</div> -->
+      <component
+        :is="states.currentMenu"
+        :translatedDoc="translatedDoc"
+        @setTanslatedDoc="setTanslatedDoc"
+      ></component>
     </main>
   </div>
 </template>
