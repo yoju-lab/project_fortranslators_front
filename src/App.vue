@@ -10,7 +10,8 @@ const states = reactive({
 });
 
 function changeComponet(component_name) {
-  states.currentMenu = component_name == "DoTranslation" ? DoTranslation : ApiTranslation;
+  states.currentMenu =
+    component_name == "DoTranslation" ? DoTranslation : ApiTranslation;
   if (states.currentMenu === DoTranslation) {
   }
   console.log(`changeComponet : ${states.currentMenu}`);
@@ -18,16 +19,16 @@ function changeComponet(component_name) {
 
 const translatedDoc = reactive({
   source: "",
-  byGoogle: "",
-  byPapago: "",
+  byFirst: "",
+  bySecond: "",
 });
 
 function setTanslatedDoc(translatedAPIDoc) {
-  // console.log(`setTanslatedDoc() : ${translatedAPIDoc.byGoogle}`);
+  // console.log(`setTanslatedDoc() : ${translatedAPIDoc.byFirst}`);
   translatedDoc.source = translatedAPIDoc.source;
-  translatedDoc.byGoogle = translatedAPIDoc.byGoogle;
-  translatedDoc.byPapago = translatedAPIDoc.byPapago;
-  // console.log(`setTanslatedDoc() - translatedDoc : ${translatedDoc.byGoogle}`);
+  translatedDoc.byFirst = translatedAPIDoc.byFirst;
+  translatedDoc.bySecond = translatedAPIDoc.bySecond;
+  // console.log(`setTanslatedDoc() - translatedDoc : ${translatedDoc.byFirst}`);
   changeComponet("DoTranslation");
 }
 </script>
@@ -38,7 +39,10 @@ function setTanslatedDoc(translatedAPIDoc) {
       <div
         class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom"
       >
-        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <a
+          href="/"
+          class="d-flex align-items-center text-dark text-decoration-none"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="40"
@@ -62,12 +66,14 @@ function setTanslatedDoc(translatedAPIDoc) {
           <!-- <button @click="changeComponet('ApiTranslation')">ApiTranslation</button>
           <button @click="changeComponet('DoTranslation')">DoTranslation</button> -->
           <a class="me-3 py-2 text-dark text-decoration-none" href="#">LogIn</a>
-          <a class="me-3 py-2 text-dark text-decoration-none" href="#">Sign In</a>
+          <a class="me-3 py-2 text-dark text-decoration-none" href="#"
+            >Sign In</a
+          >
         </nav>
       </div>
     </header>
     <main>
-      <!-- <div>byGoogle : {{ translatedDoc.byGoogle }}</div> -->
+      <!-- <div>byFirst : {{ translatedDoc.byFirst }}</div> -->
       <component
         :is="states.currentMenu"
         :translatedDoc="translatedDoc"

@@ -2,8 +2,8 @@ import { reactive, readonly } from "vue";
 
 const translatestates = reactive({
   source: "",
-  byGoogle: "",
-  byPapago: "",
+  byFirst: "",
+  bySecond: "",
   byMe: "",
 });
 
