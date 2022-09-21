@@ -3,6 +3,13 @@ import App from "./App.vue";
 
 // import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import "bootstrap/dist/js/bootstrap.js";
 
-createApp(App).mount("#app");
+const app = createApp(App);
+
+import router from "./routers/router.js";
+app.use(router);
+
+import stores from "./stores/sharedStates.js";
+app.provide("stores", stores);
+
+app.mount("#app");
